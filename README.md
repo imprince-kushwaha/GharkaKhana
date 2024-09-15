@@ -1,6 +1,6 @@
- Ghar Ka Khana
+ Ghar Ka Khana \n
  ● Established a dedicated tiffin service, "Ghar Ka Khana," focusing on delivering nutritious
- meals to customers' doorsteps.
+ meals to customers' doorsteps. \n
  ● Utilized HTML, CSS, JS, Bootstrap, and Django to develop a user-friendly online platform.
  ● Streamlined the ordering process for individuals with hectic lifestyles, including students
  and professionals.
