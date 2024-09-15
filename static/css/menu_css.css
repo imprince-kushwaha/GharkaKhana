@@ -1,0 +1,27 @@
+body {
+
+    background-color: antiquewhite;
+    /* background: url(/static/media/images.jpg); */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}

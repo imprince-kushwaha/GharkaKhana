@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Hehe</title>
+    <style>
+        .left {
+            width: 50%;
+        }
+
+        .delivery {
+            width: 50%;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item img {
+            margin-right: 10px;
+        }
+
+        a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Cart</h1>
+    <div class="container d-flex">
+        <div class="left">
+            <div id="cart-items" style="width: 90%;"></div>
+            <!-- <ul id="cart-items"></ul> -->
+        </div>
+        <div class="right">
+            <h3>Items:</h3>
+            <h3>Price:</h3>
+            <h3>Delivery Charge: ₹ 49</h3>
+            <h3>Total Price</h3>
+        </div>
+    </div>
+    <div class="container delivery">
+        <h5>Enter Delivery Details</h5>
+        <form action="{% url 'checkout' %}" method="post">
+            {% csrf_token %}
+            <div class=" row address">
+                <label for="" class="form-label">Address</label>
+                <input type="text" name="addr" id="useraddress" class="form-control" required>
+            </div>
+            <div class=" row email">
+                <label for="" class="form-label">Email</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" required>
+            </div>
+            <div class=" row number">
+                <div class="col-md-6">
+                    <label for="" class="form-label">Mobile Number</label>
+                    <input type="number" name="num" id="InputMobile" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Pin Code</label>
+                    <input type="number" name="pin_code" id="inputPin" class="form-control" required>
+                </div>
+            </div>
+            <br>
+            <input type="hidden" id="total-price-input" name="amount"> <!-- Hidden input for total price -->
+            <input type="text" id="cart_dataid" name="cart_data" hidden>
+            <button type="submit" class="btn btn-primary" id="address_and_pay" onclick="goCart()"> Proceed & Pay Amount</button>
+
+        </form>
+    </div>
+    <script src="/static/js/cartshow.js"></script>
+    {% if order is not None %}
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+
+        var options = {
+            "key": "rzp_test_glr9KMab9rWpH2", // Enter the Key ID generated from the Dashboard
+
+            "name": "Ghar Ka Khana",
+            "description": "payment gateway",
+            "image": "https://example.com/your_logo",
+            "order_id": "{{order.id}}", //This is a sample Order ID. Pass the id obtained in the response of Step 1
+            // "handler": function (response){
+            //     alert(response.razorpay_payment_id);
+            //     alert(response.razorpay_order_id);
+            //     alert(response.razorpay_signature)
+            // },
+            "callback_url": "http://127.0.0.1:8000/success/",
+            "prefill": {
+                "name": "{{user.username}}",
+                "email": "{{user.email}}",
+            },
+
+            "theme": {
+                "color": "#0c2f53ec"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+        // rzp1.on('payment.failed', function (response){
+        //         alert(response.error.code);
+        //         alert(response.error.description);
+        //         alert(response.error.source);
+        //         alert(response.error.step);
+        //         alert(response.error.reason);
+        //         alert(response.error.metadata.order_id);
+        //         alert(response.error.metadata.payment_id);
+        // });
+        // document.getElementById('rzp-button1').onclick = function(e){
+        //     rzp1.open();
+        //     e.preventDefault();
+        // }
+    </script>
+    {% endif %}
+
+
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

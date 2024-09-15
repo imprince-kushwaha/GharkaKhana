@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hihii</title>
+    <style>
+        #item-card {
+            width: 180px;
+            height: 220px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            background: rgb(253, 221, 226);
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.5s all ease-in-out;
+        }
+
+        .card-top {
+            display: flex;
+            margin: 5px 0;
+            justify-content: space-between;
+        }
+
+        #rating {
+            padding: 7px;
+            color: goldenrod;
+            background: black;
+            font-size: 14px;
+            border-radius: 14px;
+
+        }
+
+        .fa-heart-o {
+            padding: 6px;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .toggle-heart {
+            background: orangered;
+            color: beige;
+        }
+
+        /* .add-to-cart {
+            float: right;
+        } */
+
+        #item-card img {
+            height: 7rem;
+            width: 7rem;
+            border-radius: 50px;
+            margin: 0.5rem 1rem 0rem 2rem;
+        }
+
+        /* .item-card:hover img transform:scale(1.2) */
+        #item-card img:hover {
+            scale: 1.1;
+        }
+
+        #item-name {
+            margin: 5px 0;
+            font-weight: 600;
+            font-size: 18px;
+            color: darkslategray;
+        }
+
+        #item-price {
+            margin: 0;
+            color: rgb(2, 27, 27);
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .container2 {
+            background-color: rgb(223, 141, 33);
+            height: 80vh;
+            width: 1000px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="util" onclick="viewCart()" id="cart-icon">
+            <a href="{% url 'checkout' %}"><i class="fa fa-cart-plus" id="cart-plus">0 Items</i></a>
+        </div>
+        <div class="container">
+            <div id="item-card">
+                <div class="card-top">
+                    <i class="fa fa-star" id="rating">5.3</i>
+                    <button type="button" onclick="addToCart('Thali','P001')"><i class="fa fa-heart-o add-to-cart"></i></button>
+                </div>
+                <img src="/static/media/food-donation.png" alt="">
+                <p id="item-name">Vegetarian Thali</p>
+                <p id="item-price">Price $150</p>
+            </div>
+            <div id="item-card">
+                <div class="card-top">
+                    <i class="fa fa-star" id="rating">5.3</i>
+                    <!-- <button onclick="addToCart('Veg','P002')"> -->
+                        <i class="fa fa-heart-o add-to-cart"></i>
+                    <!-- </button> -->
+                </div>
+                <img src="/static/media/food-donation.png" alt="">
+                <p id="item-name">Vegetarian</p>
+                <p id="item-price">Price $150</p>
+            </div>
+            <!-- heart me id="id" -->
+            <div id="item-card">
+                <div class="card-top">
+                    <i class="fa fa-star" id="rating">5.5</i>
+                    <button onclick="addToCart('Nonveg','P003')">
+                        <i class="fa fa-heart-o add-to-cart"></i>
+                    </button>
+                </div>
+                <img src="/static/media/food-donation.png" alt="">
+                <p id="item-name">Non-Vegetarian</p>
+                <p id="item-price">Price $180</p>
+            </div>
+        </div>
+    </form>
+
+
+    <script src="https://kit.fontawesome.com/6ed9fb9281.js" crossorigin="anonymous"></script>
+    <script src="/static/js/cartindex.js"></script>
+</body>
+
+</html>
