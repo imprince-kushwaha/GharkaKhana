@@ -8,6 +8,7 @@
  convenient yet nutritious food options.
  ● Integrated Razorpay payment gateway, allowing seamless and secure online transactions
  for customers, enhancing convenience and trust in the service.
+ 
  Technologies used:- HTML, CSS, JS, BootStrap, Django, Razorpay
  
 "# newrepo" 
